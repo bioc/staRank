@@ -1,7 +1,0 @@
-load("/Users/julianes/Documents/Diss/StabilityRanking/staR/data/salmonellaInfection.RData")
-ls
-ls()
-str(salmonellaInfection)
-load("/Users/julianes/Documents/Diss/StabilityRanking/staR/data/salmonellaInfection.RData")
-ls()
-str(salmonellaInfection)
