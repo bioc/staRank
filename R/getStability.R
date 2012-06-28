@@ -36,8 +36,9 @@ function(sr,thr)
 		rank<-c(rank,setdiff(stabK,rank))
 	}
 		
-	stabRank<-1:p
-	names(stabRank)<-rank
+	nas<-rownames(sr)[which(is.na(Pi[,p]))]
+	stabRank<-c(1:(length(rank)),rep(NA,length(nas)))
+	names(stabRank)<-c(rank,nas)
 	return(list(stabRank=stabRank,stableSetSize=setSize,Pi=Pi))
 }
 

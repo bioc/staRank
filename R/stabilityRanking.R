@@ -47,9 +47,11 @@ function(x, samps , method = 'mean', decreasing = FALSE, bootstrap = TRUE,
 {
 	# replace values by ranks
 	if(decreasing){
-		sr<-apply(samps,2,function(s){rank(-s,ties.method='random')})#NA at end
+		sr<-apply(samps,2,function(s){
+					rank(-s,ties.method='random',na.last='keep')})#NA at end
 	}else{
-		sr<-apply(samps,2,function(s){rank(s,ties.method='random')})
+		sr<-apply(samps,2,function(s){
+					rank(s,ties.method='random',na.last='keep')})
 	}
 	
 	gs<-getStability(sr,thr)
@@ -59,15 +61,17 @@ function(x, samps , method = 'mean', decreasing = FALSE, bootstrap = TRUE,
 			avrgRank=aggregRank(sr,'mean'), 
 			stableSetSize=gs$stableSetSize,
 			rankCor=as.matrix(NA),
-			method=method,
-			Pi=as.matrix(NA)
+			method=method
 	)
 	
 	if(decreasing){avrgRank(s)<-rev(avrgRank(s))}
 	s@rankCor<-cor(cbind(stability=stabRank(s),base=match(names(stabRank(s)),
 							names(baseRank(s))),average=match(names(stabRank(s)),
 							names(avrgRank(s)))),method='spearman')
-	if(Pi){s@Pi<-gs$Pi}
+	# reset Pi if not needed
+	if(Pi){
+		s@Pi<-gs$Pi
+	}else{s@Pi<-matrix(NA)}
 	return(s)
 })
 

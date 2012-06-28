@@ -60,7 +60,7 @@
 #' 
 setClass("RankSummary", 
 		representation(baseRank="numeric",stabRank="numeric",
-				avrgRank="numeric",stableSetSize="numeric", rankCor="matrix",
+				avrgRank="numeric",stableSetSize="numeric",rankCor="matrix",
 				method="character",Pi="matrix")
 )
 

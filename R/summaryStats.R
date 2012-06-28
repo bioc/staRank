@@ -63,7 +63,7 @@ setMethod("summaryStats",signature=signature(data = "matrix"),
 				}
 			}
 			# ... to be continued for further summary values
-			
+			scores<-sapply(scores,function(x){ifelse(is.na(x),NA,x)})
 			return(scores)
 		})
 

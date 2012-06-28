@@ -2,7 +2,7 @@
 #' 
 #' Extracts all three rankings from a RankSummary object.
 #' 
-#' @param sr an object of class RankSummary.
+#' @param rs an object of class RankSummary.
 #' 
 #' @return a ranking matrix where each row corresponds to one element
 #' and the columns give the ranks from stability, base and averaged ranking.
@@ -11,12 +11,15 @@
 #' @export 
 #' 
 getRankmatrix <-
-function(sr)
+function(rs)
 {
-	ranks<-cbind(stability=sr@stabRank,
-			base=match(names(sr@stabRank),names(sr@baseRank)),	
-			averaged=match(names(sr@stabRank),names(sr@avrgRank)))
-	rownames(ranks)<-names(sr@stabRank)
-	colnames(ranks)<-paste(sr@method,colnames(ranks),sep='_')	
+	ranks<-matrix(NA,nrow=length(rs@stabRank), ncol=3)
+	ranks[,1]<-rs@stabRank
+	rownames(ranks)<-names(rs@stabRank)
+	ranks[,2]<-rank(rs@baseRank,na.last='keep')[rownames(ranks)]
+	ranks[,3]<-rank(rs@avrgRank,na.last='keep')[rownames(ranks)]
+	colnames(ranks)<-paste(rs@method,c('stability','base','averaged'),sep='_')
+	
 	return(ranks)
 }
+

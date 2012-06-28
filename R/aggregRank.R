@@ -24,5 +24,6 @@ function(rankMatrix,method='mean')
 						'max'=max(x,na.rm=TRUE),
 						'min'=min(x,na.rm=TRUE))}
 	)
-	return(sort(r))
+	r<-sapply(r,function(x){ifelse(is.na(x),NA,x)})
+	return(sort(r,na.last = TRUE))
 }

@@ -2,10 +2,10 @@
 \alias{getRankmatrix}
 \title{getRankmatrix}
 \usage{
-  getRankmatrix(sr)
+  getRankmatrix(rs)
 }
 \arguments{
-  \item{sr}{an object of class RankSummary.}
+  \item{rs}{an object of class RankSummary.}
 }
 \value{
   a ranking matrix where each row corresponds to one
