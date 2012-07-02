@@ -27,6 +27,10 @@ rownames(d)<-letters[1:10]
 aggregRank(d, method='mean')
 aggregRank(d, method='median')
 
+# calculate summary statistic from the data
+summaryStats(d, method='mean')
+summaryStats(d, method='RSA')
+
 # calculating replicate scores from different summary statistics
 scores<-getSampleScores(d,'mean',decreasing=FALSE,bootstrap=TRUE)
 scores<-getSampleScores(d,'mwtest',decreasing=FALSE,bootstrap=TRUE)

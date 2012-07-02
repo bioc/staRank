@@ -63,6 +63,10 @@ rownames(d)<-letters[1:10]
 aggregRank(d, method='mean')
 aggregRank(d, method='median')
 
+# calculate summary statistic from the data
+summaryStats(d, method='mean')
+summaryStats(d, method='RSA')
+
 # calculating replicate scores from different summary statistics
 scores<-getSampleScores(d,'mean',decreasing=FALSE,bootstrap=TRUE)
 scores<-getSampleScores(d,'mwtest',decreasing=FALSE,bootstrap=TRUE)
@@ -93,13 +97,5 @@ summary(s)
 
 # generate a rank matrix from a RankSummary object
 getRankmatrix(s)
-wells = sprintf("\%s\%02d", rep(LETTERS[1:8], each=12), 1:12)
-xd = expand.grid(well=wells, plate=1:3, replicate=1:4)
-xd$cell.number = rnorm(nrow(xd))
-xd$cell.size = rnorm(nrow(xd))
-x = buildCellHTS2(xd)
-GeneID = paste('gene_',1:(nrow(xd)/4),sep='')
-featureNames(x) = GeneID
-s<-stabilityRanking(x,channel='cell.number',replicates=1:4)
 }
 
