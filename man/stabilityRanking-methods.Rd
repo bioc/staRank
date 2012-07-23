@@ -45,6 +45,9 @@
   \item{Pi}{boolean indicating if the Pi matrix should be
   returned (can be very large, default=FALSE).}
 
+  \item{verbose}{boolean indicating if status update should
+  be printed}
+
   \item{...}{further parameter for the stability ranking.}
 }
 \value{

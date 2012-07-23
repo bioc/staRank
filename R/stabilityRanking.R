@@ -25,6 +25,7 @@
 #' @param nSamp the number of samples to generate (default = 100).
 #' @param Pi boolean indicating if the Pi matrix should be returned
 #' (can be very large, default=FALSE).
+#' @param verbose boolean indicating if status update should be printed
 #' @param ... further parameter for the stability ranking.
 #' 
 #' @return an object of class \code{\link{RankSummary}}.
@@ -43,7 +44,7 @@ setGeneric('stabilityRanking', function(x,...)
 #' @aliases stabilityRanking,numeric-method
 setMethod("stabilityRanking", signature=signature(x = "numeric"),
 function(x, samps , method = 'mean', decreasing = FALSE, bootstrap = TRUE,
-		Pi = FALSE, thr = 0.9)
+		Pi = FALSE, thr = 0.9, verbose = FALSE)
 {
 	# replace values by ranks
 	if(decreasing){
@@ -54,7 +55,7 @@ function(x, samps , method = 'mean', decreasing = FALSE, bootstrap = TRUE,
 					rank(s,ties.method='random',na.last='keep')})
 	}
 	
-	gs<-getStability(sr,thr)
+	gs<-getStability(sr,thr,Pi=Pi,verbose=verbose)
 	s<-RankSummary(
 			baseRank=x,
 			stabRank=gs$stabRank,
@@ -71,7 +72,8 @@ function(x, samps , method = 'mean', decreasing = FALSE, bootstrap = TRUE,
 	# reset Pi if not needed
 	if(Pi){
 		s@Pi<-gs$Pi
-	}else{s@Pi<-matrix(NA)}
+	}#else{s@Pi<-matrix(NA)}
+	rm(gs)
 	return(s)
 })
 
@@ -80,14 +82,19 @@ function(x, samps , method = 'mean', decreasing = FALSE, bootstrap = TRUE,
 #' @aliases stabilityRanking,matrix-method
 setMethod("stabilityRanking", signature=signature(x= "matrix"),
 function(x, method = 'mean',decreasing = FALSE, bootstrap = TRUE,
-		Pi = FALSE, thr = 0.9, nSamp = 100)
+		Pi = FALSE, thr = 0.9, nSamp = 100, verbose = FALSE)
 {
 	# rank data by method
 	dataRank<-sort(summaryStats(x,method,decreasing),decreasing=decreasing,
 			na.last = TRUE)
 	# create samples
+	if(verbose){cat('generating bs-samples ...')}
 	samps<-replicate(nSamp,getSampleScores(x,method,decreasing,bootstrap))
-	s<-stabilityRanking(dataRank,samps,method,decreasing,Pi,thr)
+	if(verbose){cat('done\n')}
+	if(verbose){cat('running stability selection...\n')}
+	s<-stabilityRanking(dataRank,samps,method=method,decreasing=decreasing,Pi=Pi,
+			thr=thr,verbose=verbose)
+	if(verbose){cat('done\n')}
 	rm(samps)
 	return(s)
 })
@@ -110,7 +117,7 @@ function(x, method = 'mean',decreasing = FALSE, bootstrap = TRUE,
  
 setMethod("stabilityRanking", signature=signature(x= "cellHTS"),
 function(x, channel, replicates=NULL, method = 'mean',decreasing = FALSE, 
-		bootstrap = TRUE, Pi = FALSE, thr = 0.9, nSamp = 100)
+		bootstrap = TRUE, Pi = FALSE, thr = 0.9, nSamp = 100, verbose = FALSE)
 {
 	# check that selected channel is available
 	if(!channel%in%channelNames(x)){
@@ -140,6 +147,6 @@ function(x, channel, replicates=NULL, method = 'mean',decreasing = FALSE,
 	rownames(d)<-featureNames(x)
 	# run stabilityRanking on the matrix
 	s<-stabilityRanking(d,method=method, decreasing=decreasing, 
-			bootstrap=bootstrap,Pi=Pi, thr=thr, nSamp=nSamp)
+			bootstrap=bootstrap,Pi=Pi, thr=thr, nSamp=nSamp, verbose=verbose)
 	return(s)
 })

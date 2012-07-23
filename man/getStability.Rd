@@ -2,7 +2,7 @@
 \alias{getStability}
 \title{getStability}
 \usage{
-  getStability(sr, thr)
+  getStability(sr, thr, Pi = FALSE, verbose = FALSE)
 }
 \arguments{
   \item{sr}{sample rankings in the form of a matrix where
@@ -12,6 +12,12 @@
   \item{thr}{the threshold for the stability selection,
   indicating above which frequency in the samples an
   element is considered stable.}
+
+  \item{Pi}{boolean indicating if the Pi matrix should be
+  returned (can be very large, default=FALSE).}
+
+  \item{verbose}{boolean indicating whether status updates
+  should be printed}
 }
 \value{
   a list containing: \describe{ \item{\code{stabRank}}{the
