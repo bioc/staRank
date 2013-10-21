@@ -86,7 +86,7 @@ function(sr,thr,Pi=FALSE,verbose=FALSE)
 		stabAtK<-rep(NA,p)
 		setSize<-rep(0,p)
 		if(verbose){
-			ng<-1:10*p/10
+			ng<-c(1,floor(1:10*p/10))
 			for(g in 1:p){	
 				if(g %in% ng) cat('estimating gene',g,'of',p,'\n')
 				k<-1		  	# current cutoff

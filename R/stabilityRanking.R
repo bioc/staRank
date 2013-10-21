@@ -100,12 +100,13 @@ function(x, method = 'mean',decreasing = FALSE, bootstrap = TRUE,
 })
 
 
+## needs cellHTS2 package
 #' @rdname stabilityRanking-methods
 #' @aliases stabilityRanking,cellHTS-method
 #'
  
 # examples
-# the method buildCellHTS2() seems not to exist anymore
+# the method buildCellHTS2() seems not to exist anymore so does not work
 # wells = sprintf("%s%02d", rep(LETTERS[1:8], each=12), 1:12)
 # xd = expand.grid(well=wells, plate=1:3, replicate=1:4)
 # xd$cell.number = rnorm(nrow(xd))
