@@ -1,32 +1,21 @@
 Package: staRank
 Type: Package
 Title: Stability Ranking
-Version: 1.5.1
+Version: 1.5.2
 Date: 2012-02-09
 Author: Juliane Siebourg, Niko Beerenwinkel
 Maintainer: Juliane Siebourg <juliane.siebourg@bsse.ethz.ch>
-Description: Detecting all relevant variables from a data set is challenging,
-    especially when only few samples are available and data is noisy.
-    Stability ranking provides improved variable rankings of increased
-    robustness using resampling or subsampling.
-biocViews: Bioinformatics, MultipleComparisons, CellBiology, CellBasedAssays,
-    MicrotitrePlateAssay
-Depends:
-    methods,
-    cellHTS2,
-    R (>= 2.10)
+Description: Detecting all relevant variables from a data set is
+        challenging, especially when only few samples are available and
+        data is noisy. Stability ranking provides improved variable
+        rankings of increased robustness using resampling or
+        subsampling.
+Depends: methods, cellHTS2, R (>= 2.10)
 License: GPL
 LazyLoad: Yes
-Collate:
-    'aggregRank.R'
-    'dataFormatRSA.R'
-    'getRankmatrix.R'
-    'getSampleScores.R'
-    'getStability.R'
-    'mwTest2samp.R'
-    'rankSummary.R'
-    'runRSA.R'
-    'stabilityRanking.R'
-    'summaryStats.R'
-    'uniqueRSARanking.R'
-    'staRank-package.R'
+Collate: 'aggregRank.R' 'dataFormatRSA.R' 'getRankmatrix.R'
+        'getSampleScores.R' 'getStability.R' 'mwTest2samp.R'
+        'rankSummary.R' 'runRSA.R' 'stabilityRanking.R'
+        'summaryStats.R' 'uniqueRSARanking.R' 'staRank-package.R'
+biocViews: MultipleComparison, CellBiology, CellBasedAssays,
+        MicrotitrePlateAssay
