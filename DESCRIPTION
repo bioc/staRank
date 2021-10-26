@@ -1,7 +1,7 @@
 Package: staRank
 Type: Package
 Title: Stability Ranking
-Version: 1.35.0
+Version: 1.36.0
 Date: 2012-02-09
 Author: Juliane Siebourg, Niko Beerenwinkel
 Maintainer: Juliane Siebourg <juliane.siebourg@bsse.ethz.ch>
