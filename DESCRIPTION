@@ -1,7 +1,7 @@
 Package: staRank
 Type: Package
 Title: Stability Ranking
-Version: 1.49.0
+Version: 1.49.1
 Date: 2012-02-09
 Author: Juliane Siebourg, Niko Beerenwinkel
 Maintainer: Juliane Siebourg <juliane.siebourg@bsse.ethz.ch>
@@ -16,6 +16,7 @@ LazyLoad: Yes
 Collate: 'aggregRank.R' 'dataFormatRSA.R' 'getRankmatrix.R'
         'getSampleScores.R' 'getStability.R' 'mwTest2samp.R'
         'rankSummary.R' 'runRSA.R' 'stabilityRanking.R'
-        'summaryStats.R' 'uniqueRSARanking.R' 'staRank-package.R'
+        'summaryStats.R' 'uniqueRSARanking.R' 'staRank-package.R' 'zzz.R'
 biocViews: ImmunoOncology, MultipleComparison, CellBiology, CellBasedAssays,
         MicrotitrePlateAssay
+PackageStatus: Deprecated
